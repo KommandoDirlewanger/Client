@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+    "use strict";
+    function gestoreRicezione(messaggioRicevuto){
+    document.getElementById("ricezione").textContent += messaggioRicevuto.data + "\n"; // [1]
+    }
+
+    let ws = new WebSocket("ws://10.1.0.52:8090/echo"); // [2]
+    ws.onmessage = gestoreRicezione;
+
+    function inviaAlServer(){
+    let messaggioDaInviare = document.getElementById("msg").value;
+    ws.send( messaggioDaInviare );  // [3]
+    }
+    function chiudiLaConnessione(){
+    ws.close();  // [4]
+    }
+
+  </script>
+</head>
+<body>
+    <textarea id="ricezione" readonly></textarea><br>
+  <input id="msg" type="text">
+  <button onClick="inviaAlServer()">invia!</button>
+  <button onClick="chiudiLaConnessione()">chiudi</button>
+</body>
+</html>
