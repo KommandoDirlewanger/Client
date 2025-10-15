@@ -8,6 +8,11 @@ function gestoreRicezione(messaggioRicevuto) {
 
     document.getElementById("ricezione").textContent += messaggioRicevuto.data + "\n";
 
+    if (messaggioRicevuto.data == "R|no") {
+
+        chiudiLaConnessione();
+
+    }
 }
 
 function componi(){
@@ -20,5 +25,11 @@ function componi(){
 }
 
 function chiudiLaConnessione(){
+    document.getElementById("ricevuta").textContent = "connesione chiusa"
+console.log("chiuso");
 ws.close();
+}
+
+function entrato() {
+    document.getElementById("schermata_login")
 }
