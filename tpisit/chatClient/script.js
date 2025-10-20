@@ -6,11 +6,17 @@ console.log("ho iniziato");
 
 function gestoreRicezione(messaggioRicevuto) {
 
-    document.getElementById("ricezione").textContent += messaggioRicevuto.data + "\n";
+    
 
     if (messaggioRicevuto.data == "R|no") {
 
         chiudiLaConnessione();
+
+    }
+
+    if (messaggioRicevuto.data == "R|ok") {
+
+        cambioSchermata();
 
     }
 }
@@ -32,4 +38,12 @@ ws.close();
 
 function entrato() {
     document.getElementById("schermata_login")
+}
+function cambioSchermata() {
+
+    let padre = document.getElementById("body")
+    let interfacciaLogin = document.getElementById("schermata_login"); 
+
+    padre.removeChild(interfacciaLogin);
+
 }
