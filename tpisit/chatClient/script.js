@@ -21,19 +21,19 @@ function gestoreRicezione(messaggioRicevuto) {
     }
 }
 
-function componi(){
+function componiMesLogin(){
 
     let nome = document.getElementById("nome").value;
     let password = document.getElementById("password").value;
-    let messaggioDaInviare = "A"+"|"+nome+"|"+password;
-    ws.send( messaggioDaInviare );
-    console.log("invio:"+messaggioDaInviare);
+    let messaggioDiLogin = "A"+"|"+nome+"|"+password;
+    ws.send( messaggioDiLogin );
+    console.log("invio:"+messaggioDiLogin);
 }
 
 function chiudiLaConnessione(){
     document.getElementById("ricevuta").textContent = "connesione chiusa"
-console.log("chiuso");
-ws.close();
+    console.log("chiuso");
+    ws.close();
 }
 
 function entrato() {
@@ -45,5 +45,11 @@ function cambioSchermata() {
     let interfacciaLogin = document.getElementById("schermata_login"); 
 
     padre.removeChild(interfacciaLogin);
+
+    document.getElementById("secondaSchermata").style.display = "inline-block";
+
+}
+
+function messaggioEffettivo() {
 
 }
