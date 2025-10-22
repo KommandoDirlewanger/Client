@@ -65,4 +65,11 @@ function ricaricaLaPagina() {
 
 function messaggioEffettivo() {
 
+    const d = new Date();
+    let ts = innerHTML = d;
+    let paese = "IT";
+    let mt = "text/plain";
+    let testo = document.getElementById("messaggioEffettivo");
+    let messaggioEffettivo = "M"+"|"+nome+"|"+ts+"|"+paese+"|"+mt+"|"+testo;
+
 }
