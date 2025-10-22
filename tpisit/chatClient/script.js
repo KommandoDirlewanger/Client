@@ -22,7 +22,6 @@ function gestoreRicezione(messaggioRicevuto) {
 }
 
 function componiMesLogin(){
-
     let nome = document.getElementById("nome").value;
     let password = document.getElementById("password").value;
     let messaggioDiLogin = "A"+"|"+nome+"|"+password;
@@ -66,10 +65,14 @@ function ricaricaLaPagina() {
 function messaggioEffettivo() {
 
     const d = new Date();
-    let ts = innerHTML = d;
+    let ts = d;
     let paese = "IT";
     let mt = "text/plain";
-    let testo = document.getElementById("messaggioEffettivo");
+    //let testo = document.getElementById("messaggioEffettivo").value;
     let messaggioEffettivo = "M"+"|"+nome+"|"+ts+"|"+paese+"|"+mt+"|"+testo;
+
+    console.log(messaggioEffettivo);
+
+    ws.send(messaggioEffettivo);
 
 }
