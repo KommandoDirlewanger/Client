@@ -19,11 +19,7 @@
 
         <input type="text" id="password">
 
-        <button onclick="componiMesLogin()">invia</button>
-
-        <p id="ricevuta">ricevuta:</p>
-
-        <textarea id="ricezione" readonly></textarea>
+        <button onclick="componiMesLogin()">accedi</button>
 
     </section>
 
@@ -31,9 +27,16 @@
         <textarea name="messaggioEffettivo" id="messaggioEffettivo"></textarea>
     </div>
 
-    
+    <article id="schermataLoginFallito" style="display: none;">
 
+        <img src="divieto di accesso.png" alt="divieto">
 
-    
+        <p>Accesso non riuscito</p>
+        <p>ricarica la pagina</p>
+
+        <button onclick="ricaricaLaPagina()">ricarica</button>
+
+    </article>
+
 </body>
 </html>

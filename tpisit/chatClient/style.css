@@ -48,3 +48,21 @@ div {
     background-color: rgb(6, 194, 59 );
     margin-top: 10em;
 }
+article {
+    margin-top: 3em;
+}
+img {
+    height: 10em;
+}
+article button {
+    background-color: rgb(7, 183, 7);
+    padding: 1em;
+    border-radius: 2em;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+    border: black dotted 1em;
+}
+button:hover{
+    background-color: rgb(13, 187, 13);
+}

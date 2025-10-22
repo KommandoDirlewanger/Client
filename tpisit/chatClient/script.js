@@ -1,23 +1,23 @@
 "use strict";
 
+//INIZIO CONNESSIONE
+
 let ws = new WebSocket("ws://10.1.0.52:8090/chat25/5i2");
 ws.onmessage = gestoreRicezione;
 console.log("ho iniziato");
 
+//MESSAGGI CHE MANDA IL SERVER
+
 function gestoreRicezione(messaggioRicevuto) {
 
-    
+    console.log(messaggioRicevuto.data);
 
     if (messaggioRicevuto.data == "R|no") {
-
         chiudiLaConnessione();
-
     }
 
     if (messaggioRicevuto.data == "R|ok") {
-
         cambioSchermata();
-
     }
 }
 
@@ -31,14 +31,14 @@ function componiMesLogin(){
 }
 
 function chiudiLaConnessione(){
+
     document.getElementById("ricevuta").textContent = "connesione chiusa"
     console.log("chiuso");
     ws.close();
+
+    schermataLoginFallito();
 }
 
-function entrato() {
-    document.getElementById("schermata_login")
-}
 function cambioSchermata() {
 
     let padre = document.getElementById("body")
@@ -48,6 +48,19 @@ function cambioSchermata() {
 
     document.getElementById("secondaSchermata").style.display = "inline-block";
 
+}
+
+function schermataLoginFallito() {
+    let padre = document.getElementById("body")
+    let interfacciaLogin = document.getElementById("schermata_login"); 
+
+    padre.removeChild(interfacciaLogin);
+    document.getElementById("schermataLoginFallito").style.display = "inline-block";
+
+}
+
+function ricaricaLaPagina() {
+    location.reload();
 }
 
 function messaggioEffettivo() {
