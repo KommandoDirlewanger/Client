@@ -10,7 +10,7 @@ console.log("ho iniziato");
 
 function gestoreRicezione(messaggioRicevuto) {
 
-    console.log(messaggioRicevuto.data);
+    console.log("il server risponde: " + messaggioRicevuto.data);
 
     if (messaggioRicevuto.data == "R|no") {
         chiudiLaConnessione();
@@ -21,8 +21,10 @@ function gestoreRicezione(messaggioRicevuto) {
     }
 }
 
+let nome;
+
 function componiMesLogin(){
-    let nome = document.getElementById("nome").value;
+    nome = document.getElementById("nome").value;
     let password = document.getElementById("password").value;
     let messaggioDiLogin = "A"+"|"+nome+"|"+password;
     ws.send( messaggioDiLogin );
@@ -31,7 +33,7 @@ function componiMesLogin(){
 
 function chiudiLaConnessione(){
 
-    document.getElementById("ricevuta").textContent = "connesione chiusa"
+    //document.getElementById("ricevuta").textContent = "connesione chiusa"
     console.log("chiuso");
     ws.close();
 
@@ -50,6 +52,7 @@ function cambioSchermata() {
 }
 
 function schermataLoginFallito() {
+
     let padre = document.getElementById("body")
     let interfacciaLogin = document.getElementById("schermata_login"); 
 
@@ -64,11 +67,14 @@ function ricaricaLaPagina() {
 
 function messaggioEffettivo() {
 
-    const d = new Date();
-    let ts = d;
+    const data = new Date();
+    console.log(data);
+    let dataIntera = data.getFullYear() + "-" + (1+data.getMonth()) + "-" + data.getDate() + "T" + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();
+    console.log("data = " + dataIntera);
+    let ts = dataIntera;
     let paese = "IT";
     let mt = "text/plain";
-    //let testo = document.getElementById("messaggioEffettivo").value;
+    let testo = document.getElementById("messaggioEffettivo").value;
     let messaggioEffettivo = "M"+"|"+nome+"|"+ts+"|"+paese+"|"+mt+"|"+testo;
 
     console.log(messaggioEffettivo);
