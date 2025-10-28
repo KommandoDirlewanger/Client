@@ -61,7 +61,6 @@ article button {
     color: black;
     font-size: large;
     font-weight: bold;
-    border: black dotted 1em;
 }
 button:hover{
     background-color: rgb(13, 187, 13);

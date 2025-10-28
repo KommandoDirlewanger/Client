@@ -19,6 +19,14 @@ function gestoreRicezione(messaggioRicevuto) {
     if (messaggioRicevuto.data == "R|ok") {
         cambioSchermata();
     }
+
+    let str = `${messaggioRicevuto.data}`;
+
+    if (str.startsWith("U")) {
+
+        visualizzaUtenti();
+
+    }
 }
 
 let nome;
@@ -29,6 +37,7 @@ function componiMesLogin(){
     let messaggioDiLogin = "A"+"|"+nome+"|"+password;
     ws.send( messaggioDiLogin );
     console.log("invio:"+messaggioDiLogin);
+
 }
 
 function chiudiLaConnessione(){
@@ -80,5 +89,13 @@ function messaggioEffettivo() {
     console.log(messaggioEffettivo);
 
     ws.send(messaggioEffettivo);
+
+}
+
+// SERVE PER VISUALIZZARE GLI UTENTI ATTUALMENTE ATTIVI;
+
+function visualizzaUtenti() {
+
+    document.getElementById("visualizza utenti")
 
 }
