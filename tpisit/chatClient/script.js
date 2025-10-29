@@ -3,8 +3,10 @@
 //INIZIO CONNESSIONE
 
 let ws = new WebSocket("ws://10.1.0.52:8090/chat25/5i2");
-ws.onmessage = gestoreRicezione;
+ws.onmessage = gestoreRicezione; 
 console.log("ho iniziato");
+
+let nome;
 
 //MESSAGGI CHE MANDA IL SERVER
 
@@ -24,12 +26,10 @@ function gestoreRicezione(messaggioRicevuto) {
 
     if (str.startsWith("U")) {
 
-        visualizzaUtenti();
+        document.getElementById("visualizzaUtenti").innerText = "ciao";
 
     }
 }
-
-let nome;
 
 function componiMesLogin(){
     nome = document.getElementById("nome").value;
@@ -76,10 +76,49 @@ function ricaricaLaPagina() {
 
 function messaggioEffettivo() {
 
+    // crea la data
+
     const data = new Date();
     console.log(data);
-    let dataIntera = data.getFullYear() + "-" + (1+data.getMonth()) + "-" + data.getDate() + "T" + data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();
+
+    // crostruiamo la data con i relativi controlli
+
+    let dataIntera = "" + data.getFullYear() + "-";
+
+    if (data.getMonth() < 9) {
+        dataIntera = dataIntera + "0" + (1+data.getMonth()) + "-";
+    } else {
+        dataIntera = dataIntera + (1+data.getMonth()) + "-";
+    }
+
+    if (data.getDate() < 10) {
+        dataIntera = dataIntera + "0" + data.getDate() + "-";
+    } else {
+        dataIntera = dataIntera + data.getDate() + "-";
+    }
+
+    dataIntera = dataIntera + "T";
+
+    if (data.getHours() < 10) {
+        dataIntera = dataIntera + "0" + data.getHours() + ":";
+    } else {
+        dataIntera = dataIntera + data.getHours() + ":";
+    }
+
+    if (data.getMinutes < 10) {
+        dataIntera = dataIntera + "0" + data.getMinutes() + ":";
+    } else {
+        dataIntera = dataIntera + data.getMinutes() + ":";
+    }
+
+    if (data.getSeconds() < 10) {
+        dataIntera = dataIntera + "0" + data.getSeconds();
+    } else {
+        dataIntera = dataIntera + data.getSeconds();
+    }
+
     console.log("data = " + dataIntera);
+
     let ts = dataIntera;
     let paese = "IT";
     let mt = "text/plain";
@@ -89,13 +128,5 @@ function messaggioEffettivo() {
     console.log(messaggioEffettivo);
 
     ws.send(messaggioEffettivo);
-
-}
-
-// SERVE PER VISUALIZZARE GLI UTENTI ATTUALMENTE ATTIVI;
-
-function visualizzaUtenti() {
-
-    document.getElementById("visualizza utenti")
 
 }
