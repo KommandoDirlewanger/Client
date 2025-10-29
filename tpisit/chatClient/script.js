@@ -24,9 +24,21 @@ function gestoreRicezione(messaggioRicevuto) {
 
     let str = `${messaggioRicevuto.data}`;
 
+    let host;
+
+    let prova = "";
+
     if (str.startsWith("U")) {
 
-        document.getElementById("visualizzaUtenti").innerText = "ciao";
+        host = str.split("|");
+
+        for (let i = 1; i<host.length; i++) {
+
+            prova = prova +  "<br>" + host[i];
+
+            document.getElementById("visualizzaUtenti").innerHTML = prova;
+
+        }
 
     }
 }
@@ -69,6 +81,8 @@ function schermataLoginFallito() {
     document.getElementById("schermataLoginFallito").style.display = "inline-block";
 
 }
+
+// funzione multiuso per ricaricare la pagina
 
 function ricaricaLaPagina() {
     location.reload();
