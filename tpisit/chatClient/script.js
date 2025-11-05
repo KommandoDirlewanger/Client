@@ -2,10 +2,21 @@
 
 //INIZIO CONNESSIONE
 
-let ws = new WebSocket("ws://10.1.0.52:8090/chat25/5i2");
-ws.onmessage = gestoreRicezione; 
-console.log("ho iniziato");
+let ws;
 
+    try {       
+        console.log(ws.DategetDate);
+        ws = new WebSocket("ws://10.3.3.12:8080/ServerFiorucciScarabotta/nino");
+        ws.onmessage = gestoreRicezione; 
+        console.log("ho iniziato");  
+
+
+
+    }catch (err) {
+        console.log("NEGRO")
+        schermataLoginFallito2();
+    
+    }
 let nome;
 
 //MESSAGGI CHE MANDA IL SERVER
@@ -26,7 +37,7 @@ function gestoreRicezione(messaggioRicevuto) {
 
     let host;
 
-    let prova = "";
+    let utentiAttivi = "";
 
     if (str.startsWith("U")) {
 
@@ -34,9 +45,9 @@ function gestoreRicezione(messaggioRicevuto) {
 
         for (let i = 1; i<host.length; i++) {
 
-            prova = prova +  "<br>" + host[i];
+            utentiAttivi = utentiAttivi +  "<br>" + host[i];
 
-            document.getElementById("visualizzaUtenti").innerHTML = prova;
+            document.getElementById("visualizzaUtenti").innerHTML = utentiAttivi;
 
         }
 
@@ -82,6 +93,16 @@ function schermataLoginFallito() {
 
 }
 
+function schermataLoginFallito2() {
+
+    let padre = document.body
+    let interfacciaLogin = document.getElementById("schermata_login"); 
+
+    padre.removeChild(interfacciaLogin);
+    document.getElementById("schermataLoginFallito").style.display = "inline-block";
+
+}
+
 // funzione multiuso per ricaricare la pagina
 
 function ricaricaLaPagina() {
@@ -106,9 +127,9 @@ function messaggioEffettivo() {
     }
 
     if (data.getDate() < 10) {
-        dataIntera = dataIntera + "0" + data.getDate() + "-";
+        dataIntera = dataIntera + "0" + data.getDate();
     } else {
-        dataIntera = dataIntera + data.getDate() + "-";
+        dataIntera = dataIntera + data.getDate();
     }
 
     dataIntera = dataIntera + "T";
@@ -142,5 +163,9 @@ function messaggioEffettivo() {
     console.log(messaggioEffettivo);
 
     ws.send(messaggioEffettivo);
+
+    document.getElementById("messaggioEffettivo").value = "";
+
+    console.log("cancella"+document.getElementById("messaggioEffettivo").innerText+"ghjjghgh");
 
 }
