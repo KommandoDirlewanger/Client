@@ -5,15 +5,14 @@
 let ws;
 
     try {       
-        console.log(ws.DategetDate);
-        ws = new WebSocket("ws://10.3.3.12:8080/ServerFiorucciScarabotta/nino");
+
+        ws = new WebSocket("ws://10.3.3.44:8080/ServerFiorucciScarabotta/nino");
         ws.onmessage = gestoreRicezione; 
         console.log("ho iniziato");  
 
-
-
     }catch (err) {
-        console.log("NEGRO")
+
+        console.log("errore")
         schermataLoginFallito2();
     
     }
@@ -52,6 +51,19 @@ function gestoreRicezione(messaggioRicevuto) {
         }
 
     }
+
+    if (messaggioRicevuto.data.startsWith("M")) {
+
+        let appoggio = messaggioRicevuto.data.split("|");
+        let chatServer = "" + appoggio[5];
+
+        let utente = messaggioRicevuto.data.split("|");
+        let utenteMittente = "" + utente[1];
+
+        document.getElementById("messaggiDalServer").innerText = utenteMittente + " dice: " + chatServer;
+    }
+
+
 }
 
 function componiMesLogin(){
@@ -95,11 +107,12 @@ function schermataLoginFallito() {
 
 function schermataLoginFallito2() {
 
-    let padre = document.body
+    let padre = document.getElementById("body")
     let interfacciaLogin = document.getElementById("schermata_login"); 
 
     padre.removeChild(interfacciaLogin);
     document.getElementById("schermataLoginFallito").style.display = "inline-block";
+    document.getElementById("pFallito1").innerText = "il server non esiste o è spento"
 
 }
 
@@ -165,7 +178,5 @@ function messaggioEffettivo() {
     ws.send(messaggioEffettivo);
 
     document.getElementById("messaggioEffettivo").value = "";
-
-    console.log("cancella"+document.getElementById("messaggioEffettivo").innerText+"ghjjghgh");
 
 }
